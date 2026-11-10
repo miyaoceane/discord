@@ -1,4 +1,7 @@
-
+/* =========================================================
+   1. VARIABLES DU THÈME
+   ---------------------------------------------------------
+   ========================================================= */
 :root {
     --background: #15131F;
     --surface: rgba(33, 30, 43, 0.85);
@@ -9,21 +12,29 @@
     --text-muted: #AAA4B8;
 }
 
+/* =========================================================
+   2. BASE ET MISE EN PAGE GÉNÉRALE
+   ========================================================= */
+
+/* Inclut les bordures et les marges internes dans les dimensions des éléments. */
 * {
     box-sizing: border-box;
 }
 
+/* Définit le fond général sombre et évite les marges par défaut du navigateur. */
 html, body {
     min-height: 100%;
     margin: 0;
     background-color: #15131F !important;
 }
 
+/* Typographie et couleur de texte par défaut. */
 body {
     color: var(--text);
     font-family: Arial, sans-serif;
 }
 
+/* Organisation principale : barre latérale à gauche et contenu à droite. */
 .app-layout {
     display: grid;
     grid-template-columns: 240px 1fr;
@@ -32,8 +43,11 @@ body {
     padding: 20px;
 }
 
-/* Barre latérale */
+/* =========================================================
+   3. BARRE LATÉRALE (SIDEBAR)
+   ========================================================= */
 
+/* Bloc de navigation avec fond translucide, bordure et coins arrondis. */
 .sidebar {
     background: var(--surface);
     border: 1px solid rgba(139, 92, 246, 0.2);
@@ -43,22 +57,26 @@ body {
     backdrop-filter: blur(12px);
 }
 
+/* Nom ou logo de l'application dans la barre latérale. */
 .brand {
     color: var(--purple);
     margin-bottom: 35px;
 }
 
+/* Place les liens de navigation les uns sous les autres. */
 .sidebar-nav {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
+/* Texte de bienvenue affiché lorsque l'utilisateur est connecté. */
 .user-welcome {
     color: var(--text);
     margin-bottom: 20px;
 }
 
+/* Apparence normale des liens de navigation. */
 .sidebar-nav a {
     color: var(--text-muted);
     text-decoration: none;
@@ -67,13 +85,17 @@ body {
     transition: 0.2s;
 }
 
+/* Apparence des liens au passage de la souris. */
 .sidebar-nav a:hover {
     background-color: var(--surface-light);
     color: var(--purple);
 }
 
-/* Contenu principal */
+/* =========================================================
+   4. ZONE DE CONTENU PRINCIPALE
+   ========================================================= */
 
+/* Conteneur dans lequel chaque page Twig affiche son contenu. */
 .main-content {
     background: rgba(33, 30, 43, 0.45);
     border: 1px solid rgba(255, 255, 255, 0.06);
@@ -81,16 +103,22 @@ body {
     padding: 30px;
 }
 
+/* Couleur commune des titres principaux et secondaires. */
 h1, h2 {
     color: var(--text);
 }
 
+/* Couleur utilisée pour les paragraphes et les descriptions. */
 p {
     color: var(--text-muted);
 }
 
-/* Formulaires */
+/* =========================================================
+   5. STYLES GÉNÉRAUX DES FORMULAIRES ET DES BOUTONS
+   ========================================================= */
 
+/* Présentation par défaut des formulaires. Les formulaires particuliers
+   peuvent ensuite redéfinir ces propriétés avec leurs propres classes. */
 form {
     background: var(--surface);
     padding: 25px;
@@ -98,11 +126,13 @@ form {
     max-width: 550px;
 }
 
+/* Affiche les libellés de formulaire sur leur propre ligne. */
 label {
     display: block;
     margin: 12px 0 7px;
 }
 
+/* Style des champs texte et des zones de saisie. */
 input:not([type="checkbox"]), textarea {
     width: 100%;
     padding: 12px;
@@ -112,6 +142,7 @@ input:not([type="checkbox"]), textarea {
     color: var(--text);
 }
 
+/* Apparence générale des boutons. */
 button {
     margin-top: 15px;
     padding: 11px 20px;
@@ -122,10 +153,12 @@ button {
     cursor: pointer;
 }
 
+/* Change la couleur du bouton au survol. */
 button:hover {
     background: var(--blue);
 }
 
+/* Sur les petits écrans, la barre latérale passe au-dessus du contenu. */
 @media (max-width: 700px) {
     .app-layout {
         grid-template-columns: 1fr;
@@ -136,10 +169,11 @@ button:hover {
     }
 }
 
+/* =========================================================
+   6. INTERFACE DE MESSAGERIE
+   ========================================================= */
 
-
-/* Interface de discussion */
-
+/* Organise l'en-tête, la liste des messages et la zone d'envoi en colonne. */
 .chat-container {
     display: flex;
     flex-direction: column;
@@ -147,6 +181,7 @@ button:hover {
     gap: 20px;
 }
 
+/* En-tête du salon : nom et description du salon ouvert. */
 .chat-header {
     background: rgba(139, 92, 246, 0.10);
     border: 1px solid rgba(139, 92, 246, 0.2);
@@ -154,16 +189,19 @@ button:hover {
     padding: 18px 22px;
 }
 
+/* Met en évidence le nom du salon. */
 .chat-header h1 {
     margin: 0;
     color: #B69AFF;
 }
 
+/* Ajuste la description dans l'en-tête du salon. */
 .chat-header p {
     margin-bottom: 0;
     color: #AAA4B8;
 }
 
+/* Liste verticale des messages affichés dans le salon. */
 .messages-list {
     flex: 1;
     display: flex;
@@ -171,6 +209,7 @@ button:hover {
     gap: 15px;
 }
 
+/* Bloc visuel individuel pour chaque message. */
 .message-item {
     background: rgba(48, 43, 64, 0.65);
     border: 1px solid rgba(255, 255, 255, 0.04);
@@ -178,6 +217,7 @@ button:hover {
     padding: 15px 18px;
 }
 
+/* Place le pseudo de l'auteur et la date sur une même ligne. */
 .message-info {
     display: flex;
     align-items: center;
@@ -185,15 +225,20 @@ button:hover {
     margin-bottom: 8px;
 }
 
+/* Couleur du pseudo de l'auteur du message. */
 .message-info strong {
     color: #B69AFF;
 }
 
+/* Présentation discrète de la date et de l'heure d'envoi. */
 .message-info small {
     color: #888294;
     font-size: 12px;
 }
 
+/* Présentation du contenu du message.
+   overflow-wrap évite qu'un long mot déborde du bloc.
+   white-space conserve les retours à la ligne saisis. */
 .message-item p {
     color: #F4F1FA;
     margin: 0;
@@ -201,12 +246,14 @@ button:hover {
     white-space: pre-wrap;
 }
 
+/* Message affiché lorsque le salon ne contient encore aucun message. */
 .empty-message {
     text-align: center;
     padding: 40px 10px;
     color: #AAA4B8;
 }
 
+/* Bloc qui contient le formulaire d'envoi en bas de la conversation. */
 .message-input {
     background: rgba(33, 30, 43, 0.9);
     border: 1px solid rgba(139, 92, 246, 0.2);
@@ -214,6 +261,7 @@ button:hover {
     border-radius: 12px;
 }
 
+/* Aligne la zone de saisie et le bouton Envoyer sur la même ligne. */
 .message-form {
     max-width: none;
     width: 100%;
@@ -224,18 +272,21 @@ button:hover {
     padding: 0;
 }
 
+/* La zone de saisie occupe l'espace disponible et peut être redimensionnée. */
 .message-form textarea {
     flex: 1;
     resize: vertical;
     min-height: 55px;
 }
 
+/* Ajuste le bouton Envoyer pour l'aligner avec la zone de saisie. */
 .message-form button {
     margin-top: 0;
     white-space: nowrap;
     height: 45px;
 }
 
+/* Sur téléphone, le champ et le bouton sont empilés verticalement. */
 @media (max-width: 600px) {
     .message-form {
         flex-direction: column;
@@ -243,13 +294,16 @@ button:hover {
     }
 }
 
+/* =========================================================
+   7. PAGE DE LISTE DES SALONS
+   ========================================================= */
 
-/* Page des salons */
-
+/* Conteneur de la page qui présente tous les salons disponibles. */
 .salons-page {
     width: 100%;
 }
 
+/* Aligne le titre de la page et le bouton de création d'un salon. */
 .salons-header {
     display: flex;
     justify-content: space-between;
@@ -258,22 +312,24 @@ button:hover {
     margin-bottom: 30px;
 }
 
+/* Espacement sous le titre de la page des salons. */
 .salons-header h1 {
     margin-bottom: 8px;
 }
 
+/* Supprime l'espace supérieur inutile de la description. */
 .salons-header p {
     margin-top: 0;
 }
 
-/* Liste des salons */
-
+/* Affiche les cartes de salon les unes sous les autres. */
 .salons-list {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
+/* Carte contenant l'icône, le nom, la description et les actions d'un salon. */
 .salon-card {
     display: flex;
     align-items: center;
@@ -285,11 +341,13 @@ button:hover {
     transition: 0.2s;
 }
 
+/* Met en évidence une carte de salon au passage de la souris. */
 .salon-card:hover {
     background: rgba(65, 55, 85, 0.75);
     border-color: rgba(139, 92, 246, 0.5);
 }
 
+/* Petit carré violet contenant le symbole # du salon. */
 .salon-icon {
     width: 45px;
     height: 45px;
@@ -303,22 +361,28 @@ button:hover {
     font-weight: bold;
 }
 
+/* Permet aux informations du salon d'occuper l'espace restant dans la carte. */
 .salon-info {
     flex: 1;
 }
 
+/* Mise en forme du nom de chaque salon. */
 .salon-info h2 {
     margin: 0 0 7px;
     font-size: 18px;
 }
 
+/* Mise en forme de la description du salon. */
 .salon-info p {
     margin: 0;
     font-size: 14px;
 }
 
-/* Boutons */
+/* =========================================================
+   8. BOUTONS ET LIENS D'ACTION DES SALONS
+   ========================================================= */
 
+/* Style commun aux boutons Créer et Ouvrir. */
 .btn-create,
 .btn-open {
     display: inline-block;
@@ -329,27 +393,33 @@ button:hover {
     transition: 0.2s;
 }
 
+/* Bouton principal pour créer un nouveau salon. */
 .btn-create {
     background: #8B5CF6;
     color: white !important;
 }
 
+/* Couleur du bouton de création au survol. */
 .btn-create:hover {
     background: #6366F1;
     color: white !important;
 }
 
+/* Bouton secondaire pour ouvrir un salon. */
 .btn-open {
     background: rgba(139, 92, 246, 0.15);
     color: #B69AFF !important;
     border: 1px solid rgba(139, 92, 246, 0.3);
 }
 
+/* Couleur du bouton Ouvrir au survol. */
 .btn-open:hover {
     background: #8B5CF6;
     color: white !important;
 }
 
+/* Sur petit écran, le titre et le bouton de création sont empilés.
+   Les cartes peuvent également revenir à la ligne si nécessaire. */
 @media (max-width: 600px) {
     .salons-header {
         align-items: flex-start;
@@ -361,21 +431,27 @@ button:hover {
     }
 }
 
-/* Formulaire de création */
+/* =========================================================
+   9. FORMULAIRE DE CRÉATION / MODIFICATION D'UN SALON
+   ========================================================= */
 
+/* Limite la largeur du formulaire et le centre dans la page. */
 .form-page {
     max-width: 650px;
     margin: 30px auto;
 }
 
+/* Titre et texte introductif du formulaire. */
 .form-header {
     margin-bottom: 25px;
 }
 
+/* Couleur violette du titre du formulaire. */
 .form-header h1 {
     color: #B69AFF;
 }
 
+/* Carte qui entoure les champs du formulaire. */
 .form-card {
     background: rgba(48, 43, 64, 0.65);
     border: 1px solid rgba(139, 92, 246, 0.2);
@@ -383,28 +459,39 @@ button:hover {
     padding: 25px;
 }
 
+/* Réinitialise certains styles généraux du formulaire à l'intérieur de la carte. */
 .form-card form {
     max-width: none;
     background: transparent;
     padding: 0;
 }
 
+/* Le bouton d'enregistrement occupe toute la largeur de la carte. */
 .form-card button {
     width: 100%;
     margin-top: 20px;
 }
 
+/* Lien permettant de revenir à la liste des salons. */
 .back-link {
     display: inline-block;
     margin-top: 20px;
     color: #B69AFF;
     text-decoration: none;
 }
+
+/* Le formulaire de suppression reste compact à l'intérieur d'une carte salon. */
 .salon-card form {
     max-width: none;
     width: auto;
     flex: 0 0 auto;
 }
+
+/* =========================================================
+   10. BOUTON DE SUPPRESSION D'UN SALON
+   ========================================================= */
+
+/* Apparence du bouton Supprimer, volontairement différente des autres actions. */
 .btn-delete {
     background: rgba(220, 50, 70, 0.15);
     color: #FF8585;
@@ -413,27 +500,38 @@ button:hover {
     padding: 11px 17px;
 }
 
+/* Met en évidence l'action de suppression au survol. */
 .btn-delete:hover {
     background: #DC3545;
     color: white;
 }
 
+/* Retire le fond, le padding et la marge du formulaire de suppression
+   pour qu'il s'aligne correctement avec les boutons Ouvrir et Modifier. */
 .salon-card form {
     background: transparent;
     padding: 0;
     margin: 0;
 }
+
+/* =========================================================
+   11. MESSAGES FLASH (SUCCÈS ET ERREURS)
+   ========================================================= */
+
+/* Présentation commune des notifications temporaires affichées par Symfony. */
 .flash {
     padding: 12px 18px;
     margin-bottom: 20px;
     border-radius: 8px;
 }
 
+/* Notification affichée après une opération réussie. */
 .flash-success {
     background: rgba(34, 197, 94, 0.15);
     color: #86EFAC;
 }
 
+/* Notification affichée lorsqu'une opération ne peut pas être effectuée. */
 .flash-error {
     background: rgba(220, 50, 70, 0.15);
     color: #FF8585;
