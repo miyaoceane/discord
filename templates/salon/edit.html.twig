@@ -1,0 +1,30 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un salon{% endblock %}
+
+{% block body %}
+
+    <div class="form-page">
+        <div class="form-header">
+            <h1>Modifier {{ salon.nom }}</h1>
+            <p>Modifie les informations de ton salon.</p>
+        </div>
+
+        <div class="form-card">
+            {{ form_start(form) }}
+
+                {{ form_row(form.nom) }}
+                {{ form_row(form.description) }}
+
+                <button type="submit">Enregistrer les modifications</button>
+
+            {{ form_end(form) }}
+        </div>
+
+        <a href="{{ path('app_salon') }}" class="back-link">
+            Retour aux salons
+        </a>
+    </div>
+
+{% endblock %}

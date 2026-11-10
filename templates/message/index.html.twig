@@ -1,0 +1,52 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Salon - {{ salon.nom }}{% endblock %}
+
+{% block body %}
+
+    <div class="chat-container">
+
+        <div class="chat-header">
+            <div>
+                <h1># {{ salon.nom }}</h1>
+                <p>{{ salon.description }}</p>
+            </div>
+        </div>
+
+        <div class="messages-list">
+
+            {% for message in messages %}
+                <div class="message-item">
+                    <div class="message-info">
+                        <strong>{{ message.auteur.pseudo }}</strong>
+                        <small>{{ message.dateEnvoi|date('d/m/Y H:i') }}</small>
+                    </div>
+
+                    <p>{{ message.contenu }}</p>
+                </div>
+
+            {% else %}
+                <p class="empty-message">Aucun message pour le moment. Lance la conversation !</p>
+            {% endfor %}
+
+        </div>
+
+        <div class="message-input">
+            {{ form_start(form, {'attr': {'class': 'message-form'}}) }}
+
+                {{ form_widget(form.contenu, {
+                    'attr': {
+                        'placeholder': 'Écris ton message...',
+                        'rows': 2
+                    }
+                }) }}
+
+                <button type="submit">Envoyer</button>
+
+            {{ form_end(form) }}
+        </div>
+
+    </div>
+
+{% endblock %}

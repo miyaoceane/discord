@@ -1,0 +1,30 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un salon{% endblock %}
+
+{% block body %}
+
+    <div class="form-page">
+        <div class="form-header">
+            <h1>Créer un salon</h1>
+            <p>Crée un nouvel espace pour discuter.</p>
+        </div>
+
+        <div class="form-card">
+            {{ form_start(form) }}
+
+                {{ form_row(form.nom) }}
+                {{ form_row(form.description) }}
+
+                <button type="submit">Créer le salon</button>
+
+            {{ form_end(form) }}
+        </div>
+
+        <a href="{{ path('app_salon') }}" class="back-link">
+            Retour aux salons
+        </a>
+    </div>
+
+{% endblock %}

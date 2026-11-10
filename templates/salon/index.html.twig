@@ -1,0 +1,62 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes salons{% endblock %}
+
+{% block body %}
+
+    <div class="salons-page">
+
+        <div class="salons-header">
+            <div>
+                <h1>Mes salons</h1>
+                <p>Retrouve tes espaces de discussion.</p>
+            </div>
+
+            <a href="{{ path('app_salon_new') }}" class="btn-create">
+                + Créer un salon
+            </a>
+        </div>
+
+        <div class="salons-list">
+
+            {% for salon in salons %}
+                <div class="salon-card">
+
+                    <div class="salon-icon">#</div>
+
+                    <div class="salon-info">
+                        <h2>{{ salon.nom }}</h2>
+                        <p>{{ salon.description }}</p>
+                    </div>
+
+                    <a href="{{ path('app_message', {id: salon.id}) }}"
+                       class="btn-open">
+                        Ouvrir
+                    </a>
+                    <a href="{{ path('app_salon_edit', {id: salon.id}) }}"
+                    class="btn-open">
+                        Modifier
+                    </a>
+                    <form method="post"
+                        action="{{ path('app_salon_delete', {id: salon.id}) }}"
+                        onsubmit="return confirm('Veux-tu vraiment supprimer ce salon ?');">
+
+                        <input type="hidden"
+                            name="_token"
+                            value="{{ csrf_token('delete' ~ salon.id) }}">
+
+                        <button type="submit" class="btn-delete">
+                            Supprimer
+                        </button>
+                    </form>
+                </div>
+            {% else %}
+                <p>Aucun salon disponible.</p>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+{% endblock %}
