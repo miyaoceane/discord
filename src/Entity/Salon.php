@@ -22,9 +22,7 @@ class Salon
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    /**
-     * @var Collection<int, Message>
-     */
+   
     #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'salon')]
     private Collection $messages;
 
@@ -62,9 +60,7 @@ class Salon
         return $this;
     }
 
-    /**
-     * @return Collection<int, Message>
-     */
+    
     public function getMessages(): Collection
     {
         return $this->messages;
@@ -83,7 +79,6 @@ class Salon
     public function removeMessage(Message $message): static
     {
         if ($this->messages->removeElement($message)) {
-            // set the owning side to null (unless already changed)
             if ($message->getSalon() === $this) {
                 $message->setSalon(null);
             }
