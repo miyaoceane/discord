@@ -23,25 +23,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180)]
     private ?string $email = null;
 
-    /**
-     * @var list<string> The user roles
-     */
+    
     #[ORM\Column]
     private array $roles = [];
 
-    /**
-     * @var string The hashed password
-     */
+    
     #[ORM\Column]
     private ?string $password = null;
 
     #[ORM\Column(length: 50)]
     private ?string $pseudo = null;
 
-    /**
-     * @var Collection<int, Message>
-     */
-    #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'auteur')]
+   M\OneToMany(targetEntity: Message::class, mappedBy: 'auteur')]
     private Collection $messages;
 
     public function __construct()
@@ -66,31 +59,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
+    
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
     }
 
-    /**
-     * @see UserInterface
-     */
+    
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
 
-    /**
-     * @param list<string> $roles
-     */
+   
     public function setRoles(array $roles): static
     {
         $this->roles = $roles;
@@ -98,9 +82,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
+    
     public function getPassword(): ?string
     {
         return $this->password;
@@ -113,9 +95,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * Ensure the session doesn't contain actual password hashes by CRC32C-hashing them, as supported since Symfony 7.3.
-     */
+   
     public function __serialize(): array
     {
         $data = (array) $this;
@@ -136,9 +116,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Message>
-     */
+    
     public function getMessages(): Collection
     {
         return $this->messages;
@@ -157,7 +135,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeMessage(Message $message): static
     {
         if ($this->messages->removeElement($message)) {
-            // set the owning side to null (unless already changed)
             if ($message->getAuteur() === $this) {
                 $message->setAuteur(null);
             }
